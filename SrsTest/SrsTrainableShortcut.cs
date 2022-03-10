@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SrsTest
 {
-    internal class SrsTrainableShortcut : ISrsTrainableShortcut
+    public class SrsTrainableShortcut : ISrsTrainableShortcut
     {
         [JsonProperty("id")]
         public int Id { get; set; }

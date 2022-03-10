@@ -1,6 +1,6 @@
 ﻿namespace SrsTest
 {
-    internal interface ISessionAndPauseTime
+    public interface ISessionAndPauseTime
     {
         TimeSpan? PauseTime { get; set; }
         ISrsSession? SrsSession { get; set; }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SrsTest
 {
-    internal class SrsSchema : ISrsSchema
+    public class SrsSchema : ISrsSchema
     {
         [JsonProperty("shortcut")]
         public int ShortcutId { get; set; }
@@ -19,11 +19,11 @@ namespace SrsTest
 
         [JsonProperty("sessionsAndPauseTimes")]
         public IList<ISessionAndPauseTime> SessionsAndPauseTimes { get; set; }
-
+        public int Id { get; set; }
 
         public SrsSchema(List<SessionAndPauseTime> sessionsAndPauseTimes)
         {
-            SessionsAndPauseTimes = sessionsAndPauseTimes.Select(s => (ISessionAndPauseTime)s).ToList();
+            SessionsAndPauseTimes = sessionsAndPauseTimes?.Select(s => (ISessionAndPauseTime)s).ToList();
         }
     }
 }

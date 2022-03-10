@@ -62,7 +62,34 @@ switch (input2)
         goto WrongShortcut;
 }
 
-Console.ReadKey(true);
+Console.WriteLine("Creating schema by id 1.");
+Console.WriteLine("What is the CurrentSessionIndex?");
+var schema = user.SupportedPrograms[0].Shortcuts[0].SrsSchema = new SrsSchema(null);
+schema.ShortcutId = user.SupportedPrograms[0].Shortcuts[0].Id;
+schema.Id = 1;
+int index;
+while (!int.TryParse(Console.ReadLine(), out index))
+{
+    Console.WriteLine("Wrong input, try again.");
+}
+schema.CurrentSessionIndex = index;
+schema.SessionsAndPauseTimes = new List<ISessionAndPauseTime>();
+Console.WriteLine("Creating sessions and pause times.");
+for(int i = 0; i < 8; i++)
+{
+    schema.SessionsAndPauseTimes.Add(new SessionAndPauseTime(null));
+    schema.SessionsAndPauseTimes[i].PauseTime = new TimeSpan(i, 0, 0);
+    schema.SessionsAndPauseTimes[i].SrsSession = new SrsSession();
+    var session = schema.SessionsAndPauseTimes[i].SrsSession;
+    session.CurrentRepCount = new Random().Next(10);
+    session.EndedTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour - 8 + i, 0, 0);
+    session.MaxDuration = new TimeSpan(i + 1, 0, 0);
+    session.DeadLine = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour - 8 + i, 0, 0);
+    session.GoalRepCount = session.CurrentRepCount;
+    session.State = "Completed";
+    session.Id = i + 1;
+    session.ScheduledDateTime = null;
+}
 
 string fileName = $"{AppContext.BaseDirectory}MockUser{user.Id}.json";
 using (StreamWriter streamWriter = new(fileName, new FileStreamOptions() {Access = FileAccess.ReadWrite, Mode = FileMode.OpenOrCreate })) 

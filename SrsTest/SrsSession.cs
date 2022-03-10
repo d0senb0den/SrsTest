@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SrsTest
 {
-    internal class SrsSession : ISrsSession
+    public class SrsSession : ISrsSession
     {
         [JsonProperty("currentRepCount")]
         public int CurrentRepCount { get; set; }

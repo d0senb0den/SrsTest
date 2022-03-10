@@ -12,7 +12,7 @@ namespace SrsTest
 
         public SrsTrainableShortcutBuilder Create()
         {
-            shortcut = new SrsTrainableShortcut(new SrsSchema(new List<SessionAndPauseTime>()));
+            shortcut = new SrsTrainableShortcut(null);
             return this;
         }
 
@@ -46,7 +46,6 @@ namespace SrsTest
         public SrsTrainableShortcutBuilder SpecifyId(int id)
         {
             shortcut.Id = id;
-            shortcut.SrsSchema.ShortcutId = shortcut.Id;
             return this;
         }
     }
